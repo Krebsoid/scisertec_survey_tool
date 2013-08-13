@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<div class="navbar navbar-fixed-top" data-ng-controller="MainController">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/#!/">SciSerTec</a>
+
+            <div>
+                <ul class="nav">
+                    <li data-bootstrap-link="/">
+                        <strong class="emphasized">Home</strong>
+                    </li>
+                    <li data-restricted-roles="ADMIN" data-bootstrap-link="/mailtask">
+                        <strong class="emphasized">MailTask</strong>
+                    </li>
+                    <li data-restricted-roles="ADMIN" data-bootstrap-drop-down-link="/survey" class="dropdown" data-ng-class="visibility">
+                        <a href="#" class="dropdown-toggle" data-drop-down-on-hover data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
+                            <strong class="emphasized">
+                                Survey
+                            </strong>
+                            <span style="display: inline-block" class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/#!/survey/vcongress">
+                                    vCongress - After congress
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/#!/survey/scisertec">
+                                    SciSerTec - Customer
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li data-bootstrap-link="/logout">
+                        <strong class="emphasized">Logout</strong>
+                    </li>
+                </ul>
+            </div>
+            <div style="float: right; line-height: 40px;">
+                Logged in as: <strong class="emphasized">{{user.name}}</strong>
+            </div>
+        </div>
+    </div>
+</div>

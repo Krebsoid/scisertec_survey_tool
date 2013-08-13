@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<div class="content-box" style="min-width: 920px;" data-ng-controller="SurveyController">
+    <div style="margin:30px;">
+        <div class="row">
+            <div class="span12 well">
+                <div style="margin-bottom: 12px; overflow: auto">
+                    <div class="vcongress-logo-medium" style="float: left"></div>
+                    <div style="float: right; padding: 20px;">
+                        <h1 style="">Teilnehmer-Umfrage</h1>
+                    </div>
+                </div>
+                <div style="margin: 20px 0 10px; border-bottom: 1px solid #eeeeee;"></div>
+                <div class="row">
+                    <div class="span6" style="float:left">
+                        <p>
+                            <strong>Anonymer Kundenfragebogen</strong>
+                        </p>
+
+                        <p>
+                            Sehr geehrte Damen und Herren,
+                        </p>
+                        <p>
+                            Wir möchten gerne von Ihnen wissen, wie Ihnen die Anmeldung über vCongress
+                            gefallen hat und möchten Sie bitten, uns fünf kurze Fragen zu beantworten, um   ggf. unsere Qualität verbessern zu können.
+                        </p>
+                        <p>
+                            Falls Ihnen etwas nicht gefallen hat, möchten wir Sie bitten, dies kurz näher zu beschreiben,
+                            damit wir den Prozess optimieren können. <br/>
+                            Die Angaben sind anonym und werden nur für interne Zwecke der Qualitätsverbesserung verwendet.
+                        </p>
+                        <p>
+                            Vielen Dank für Ihre Hilfe! <br/>
+                            Ihr vCongress Team
+                        </p>
+                    </div>
+                    <div class="span6" style="text-align: right">
+                        <div>
+                            <div class="inline" style="margin-right: 20px; cursor: pointer;" data-ng-click="switchLocale(localeEn)">
+                                <div class="flag_britain"></div>
+                                <div style="text-align: center"><h4 style="margin: 0">English</h4></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin: 20px 0 10px; border-bottom: 1px solid #eeeeee;"></div>
+
+                <form novalidate action="">
+                    <div style="margin-top: 50px; margin-bottom: 70px;">
+                        <div class="person_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h3>Welche Rolle haben Sie eingenommen?</h3>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.role" name="role"
+                                       data-ng-click="saveData('role',survey.data.role)" data-ng-value="'PARTICIPANT'"> Teilnehmer
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.role" name="role"
+                                       data-ng-click="saveData('role',survey.data.role)" data-ng-value="'ORGANIZER'"> Organizer
+                            </label>
+                            <label class="radio inline" data-ng-show="survey.reviewing">
+                                <input type="radio" data-ng-model="survey.data.role" name="role"
+                                       data-ng-click="saveData('role',survey.data.role)" data-ng-value="'REVIEWER'"> Gutachter
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 50px; margin-bottom: 70px;">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h3>vCongress allgemein</h3>
+                            <h4>Wie hat Ihnen das Kongressmanagement-Tool vCongress gefallen (Benutzerfreundlichkeit, Layout, ...)?</h4>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.common"
+                                       data-ng-click="saveData('common',survey.data.common)" name="common" data-ng-value="1"> 1 (sehr gut)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.common"
+                                       data-ng-click="saveData('common',survey.data.common)" name="common" data-ng-value="2"> 2 (gut)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.common"
+                                       data-ng-click="saveData('common',survey.data.common)" name="common" data-ng-value="3"> 3 (mittel)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.common"
+                                       data-ng-click="saveData('common',survey.data.common)" name="common" data-ng-value="4"> 4 (ausreichend)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.common"
+                                       data-ng-click="saveData('common',survey.data.common)" name="common" data-ng-value="5"> 5 (schlecht)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.common"
+                                       data-ng-click="saveData('common',survey.data.common)" name="common" data-ng-value="0"> 0 (nicht durchgeführt, nicht möglich)
+                            </label>
+
+                            <div data-ng-show="survey.data.common == 4 || survey.data.common == 5" style="margin-top: 15px;">
+                                <div>
+                                    Kommentar:
+                                </div>
+                                <label>
+                                    <textarea rows="4" cols="8" data-ng-model="survey.data.commonCritics" class="span9"
+                                              data-ng-change="saveDataDeferred('commonCritics', survey.data.commonCritics)"
+                                              placeholder="Bitte beschreiben Sie näher, was Ihnen nicht gefallen hat...">
+                                    </textarea>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 70px;" data-ng-show="survey.payment">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h3>Bezahlfunktion</h3>
+                            <h4>Wie hat Ihnen die Bezahlfunktion in vCongress gefallen (Überweisung, PayPal, Rechnung, ...)?</h4>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.payment"
+                                       data-ng-click="saveData('payment',survey.data.payment)" name="payment" data-ng-value="1"> 1 (sehr gut)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.payment"
+                                       data-ng-click="saveData('payment',survey.data.payment)" name="payment" data-ng-value="2"> 2 (gut)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.payment"
+                                       data-ng-click="saveData('payment',survey.data.payment)" name="payment" data-ng-value="3"> 3 (mittel)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.payment"
+                                       data-ng-click="saveData('payment',survey.data.payment)" name="payment" data-ng-value="4"> 4 (ausreichend)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.payment"
+                                       data-ng-click="saveData('payment',survey.data.payment)" name="payment" data-ng-value="5"> 5 (schlecht)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.payment"
+                                       data-ng-click="saveData('payment',survey.data.payment)" name="payment" data-ng-value="0"> 0 (nicht durchgeführt, nicht möglich)
+                            </label>
+
+                            <div data-ng-show="survey.data.payment == 4 || survey.data.payment == 5" style="margin-top: 15px;">
+                                <div>
+                                    Kommentar:
+                                </div>
+                                <label>
+                                    <textarea rows="4" cols="8" data-ng-model="survey.data.paymentCritics" class="span9"
+                                              data-ng-change="saveDataDeferred('paymentCritics', survey.data.paymentCritics)"
+                                              placeholder="Bitte beschreiben Sie näher, was Ihnen nicht gefallen hat...">
+                                    </textarea>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 70px;" data-ng-show="survey.abstractSubmission">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h3>Abstract Submission</h3>
+                            <h4>Falls Sie ein Abstract eingereicht haben, wie hat Ihnen die Abstract Submission in vCongress gefallen?</h4>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.paper"
+                                       data-ng-click="saveData('paper',survey.data.paper)" name="paper" data-ng-value="1"> 1 (sehr gut)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.paper"
+                                       data-ng-click="saveData('paper',survey.data.paper)" name="paper" data-ng-value="2"> 2 (gut)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.paper"
+                                       data-ng-click="saveData('paper',survey.data.paper)" name="paper" data-ng-value="3"> 3 (mittel)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.paper"
+                                       data-ng-click="saveData('paper',survey.data.paper)" name="paper" data-ng-value="4"> 4 (ausreichend)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.paper"
+                                       data-ng-click="saveData('paper',survey.data.paper)" name="paper" data-ng-value="5"> 5 (schlecht)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.paper"
+                                       data-ng-click="saveData('paper',survey.data.paper)" name="paper" data-ng-value="0"> 0 (nicht durchgeführt, nicht möglich)
+                            </label>
+
+                            <div data-ng-show="survey.data.paper == 4 || survey.data.paper == 5" style="margin-top: 15px;">
+                                <div>
+                                    Kommentar:
+                                </div>
+                                <label>
+                                    <textarea rows="4" cols="8" data-ng-model="survey.data.paperCritics"  class="span9"
+                                              data-ng-change="saveDataDeferred('paperCritics', survey.data.paperCritics)"
+                                              placeholder="Bitte beschreiben Sie näher, was Ihnen nicht gefallen hat...">
+                                    </textarea>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 70px;">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h3>Technischer Support</h3>
+                            <h4>Wie hat Ihnen der technische Support des vCongress Teams gefallen (Telefon, Email, Handbücher,
+                                FAQs,...)?</h4>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.support"
+                                       data-ng-click="saveData('support',survey.data.support)" name="support" data-ng-value="1"> 1 (sehr gut)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.support"
+                                       data-ng-click="saveData('support',survey.data.support)" name="support" data-ng-value="2"> 2 (gut)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.support"
+                                       data-ng-click="saveData('support',survey.data.support)" name="support" data-ng-value="3"> 3 (mittel)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.support"
+                                       data-ng-click="saveData('support',survey.data.support)" name="support" data-ng-value="4"> 4 (ausreichend)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.support"
+                                       data-ng-click="saveData('support',survey.data.support)" name="support" data-ng-value="5"> 5 (schlecht)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.support"
+                                       data-ng-click="saveData('support',survey.data.support)" name="support" data-ng-value="0"> 0 (nicht durchgeführt, nicht möglich)
+                            </label>
+
+                            <div data-ng-show="survey.data.support == 4 || survey.data.support == 5" style="margin-top: 15px;">
+                                <div>
+                                    Kommentar:
+                                </div>
+                                <label>
+                                    <textarea rows="4" cols="8" data-ng-model="survey.data.supportCritics"  class="span9"
+                                              data-ng-change="saveDataDeferred('supportCritics', survey.data.supportCritics)"
+                                              placeholder="Bitte beschreiben Sie näher, was Ihnen nicht gefallen hat...">
+                                    </textarea>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 70px;">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h3>Präsentationswebseite (<a href="http://www.scisertec.de" target="_blank">http://www.scisertec.de</a>)</h3>
+                            <h4>Falls Sie unsere Präsentationswebseite besucht haben, wie hat Ihnen diese gefallen?</h4>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.website"
+                                       data-ng-click="saveData('website',survey.data.website)" name="website" data-ng-value="1"> 1 (sehr gut)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.website"
+                                       data-ng-click="saveData('website',survey.data.website)" name="website" data-ng-value="2"> 2 (gut)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.website"
+                                       data-ng-click="saveData('website',survey.data.website)" name="website" data-ng-value="3"> 3 (mittel)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.website"
+                                       data-ng-click="saveData('website',survey.data.website)" name="website" data-ng-value="4"> 4 (ausreichend)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.website"
+                                       data-ng-click="saveData('website',survey.data.website)" name="website" data-ng-value="5"> 5 (schlecht)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.website"
+                                       data-ng-click="saveData('website',survey.data.website)" name="website" data-ng-value="0"> 0 (nicht durchgeführt, nicht möglich)
+                            </label>
+
+                            <div data-ng-show="survey.data.website == 4 || survey.data.website == 5" style="margin-top: 15px;">
+                                <div>
+                                    Kommentar:
+                                </div>
+                                <label>
+                                    <textarea rows="4" cols="8" data-ng-model="survey.data.websiteCritics"  class="span9"
+                                              data-ng-change="saveDataDeferred('websiteCritics', survey.data.websiteCritics)"
+                                              placeholder="Bitte beschreiben Sie näher, was Ihnen nicht gefallen hat...">
+                                    </textarea>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 70px;" data-ng-show="survey.data.role == 'REVIEWER'">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h3>Nur für Gutachter</h3>
+                            <h4>Wie hat Ihnen der Gutachterprozess in vCongress gefallen (Benutzerfreundlichkeit, Transparenz,…)?</h4>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.review"
+                                       data-ng-click="saveData('review',survey.data.review)" name="review" data-ng-value="1"> 1 (sehr gut)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.review"
+                                       data-ng-click="saveData('review',survey.data.review)" name="review" data-ng-value="2"> 2 (gut)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.review"
+                                       data-ng-click="saveData('review',survey.data.review)" name="review" data-ng-value="3"> 3 (mittel)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.review"
+                                       data-ng-click="saveData('review',survey.data.review)" name="review" data-ng-value="4"> 4 (ausreichend)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.review"
+                                       data-ng-click="saveData('review',survey.data.review)" name="review" data-ng-value="5"> 5 (schlecht)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.review"
+                                       data-ng-click="saveData('review',survey.data.review)" name="review" data-ng-value="0"> 0 (nicht durchgeführt, nicht möglich)
+                            </label>
+
+                            <div data-ng-show="survey.data.review == 4 || survey.data.review == 5" style="margin-top: 15px;">
+                                <div>
+                                    Kommentar:
+                                </div>
+                                <label>
+                                    <textarea rows="4" cols="8" data-ng-model="survey.data.reviewCritics"  class="span9"
+                                              data-ng-change="saveDataDeferred('reviewCritics', survey.data.reviewCritics)"
+                                              placeholder="Bitte beschreiben Sie näher, was Ihnen nicht gefallen hat...">
+                                    </textarea>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 70px;" data-ng-show="survey.data.role == 'ORGANIZER'">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h3>Nur für Organizer</h3>
+                            <h4>Wie haben Ihnen die Organizerfunktion von vCongress gefallen (Teilnehmerliste, Abstractliste, CSV und PDF downloads, Statistiken,…)?</h4>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.organizer"
+                                       data-ng-click="saveData('organizer',survey.data.organizer)" name="organizer" data-ng-value="1"> 1 (sehr gut)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.organizer"
+                                       data-ng-click="saveData('organizer',survey.data.organizer)" name="organizer" data-ng-value="2"> 2 (gut)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.organizer"
+                                       data-ng-click="saveData('organizer',survey.data.organizer)" name="organizer" data-ng-value="3"> 3 (mittel)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.organizer"
+                                       data-ng-click="saveData('organizer',survey.data.organizer)" name="organizer" data-ng-value="4"> 4 (ausreichend)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.organizer"
+                                       data-ng-click="saveData('organizer',survey.data.organizer)" name="organizer" data-ng-value="5"> 5 (schlecht)
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.organizer"
+                                       data-ng-click="saveData('organizer',survey.data.organizer)" name="organizer" data-ng-value="0"> 0 (nicht durchgeführt, nicht möglich)
+                            </label>
+
+                            <div data-ng-show="survey.data.organizer == 4 || survey.data.organizer == 5" style="margin-top: 15px;">
+                                <div>
+                                    Kommentar:
+                                </div>
+                                <label>
+                                    <textarea rows="4" cols="8" data-ng-model="survey.data.organizerCritics"  class="span9"
+                                              data-ng-change="saveDataDeferred('organizerCritics', survey.data.organizerCritics)"
+                                              placeholder="Bitte beschreiben Sie näher, was Ihnen nicht gefallen hat...">
+                                    </textarea>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 70px;">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h3>Lob, was hat Ihnen gut gefallen?</h3>
+                            <label>
+                                <textarea rows="4" cols="8" data-ng-model="survey.data.commendation"  class="span9"
+                                          data-ng-change="saveDataDeferred('commendation', survey.data.commendation)"
+                                          placeholder="Text">
+                                </textarea>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 70px;">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h3>Kritik, was hat Ihnen nicht gefallen, was können wir verbessern?</h3>
+                            <label>
+                                <textarea rows="4" cols="8" data-ng-model="survey.data.critics"  class="span9"
+                                          data-ng-change="saveDataDeferred('critics', survey.data.critics)"
+                                          placeholder="Text">
+                                </textarea>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="offset3 span6">
+                            <button class="btn btn-large btn-primary btn-block" type="button" data-ng-click="submitSurvey()">Umfrage abschicken</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>

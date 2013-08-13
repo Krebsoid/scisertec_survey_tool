@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<div data-ng-controller="SheetController">
+    <div class="row-fluid" style="margin-bottom: 30px;">
+        <div class="span6" style="width: 700px;" id="roleQuestion" data-pie-chart="{{data.roleQuestion.results}}" data-series-name="Role"
+             data-chart-title="Welche Rolle haben Sie eingenommen?">
+        </div>
+
+        <div class="span6" style="width: 700px;" data-column-chart id="averageRatings" data-categories="Common,Payment,Paper,Support,Website" data-y-axis-text="Rating"
+             data-ng-show="sheets.length > 0"
+             data-chart-title="Durchschnittswerte der Kategorien">
+            <div data-column-chart-series="{{data.averageRatings.results}}" data-series-name="Average"></div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12" style="width: 1400px; height: 400px;" data-column-chart id="ratings" data-categories="One,Two,Three,Four,Five" data-y-axis-text="Votings"
+             data-ng-show="sheets.length > 0"
+             data-chart-title="Einzelne Bewertungen der Kategorien">
+            <div data-column-chart-series="{{data.commonRating.results}}" data-series-name="Common"></div>
+            <div data-column-chart-series="{{data.paymentRating.results}}" data-series-name="Payment"></div>
+            <div data-column-chart-series="{{data.paperRating.results}}" data-series-name="Paper"></div>
+            <div data-column-chart-series="{{data.supportRating.results}}" data-series-name="Support"></div>
+            <div data-column-chart-series="{{data.websiteRating.results}}" data-series-name="Website"></div>
+        </div>
+    </div>
+
+</div>

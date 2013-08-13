@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<div class="content-box" style="min-width: 920px;" data-ng-controller="SurveyController">
+    <div style="margin:30px;">
+        <div class="row" data-ng-controller="SciSerTecSurveyController">
+            <div class="span12 well">
+                <div style="margin-bottom: 12px; overflow: auto">
+                    <div class="scisertec-logo-medium" style="float: left"></div>
+                    <div style="float: right; padding: 20px;">
+                        <h2 style="">Umfrage</h2>
+                    </div>
+                </div>
+                <div style="margin: 20px 0 10px; border-bottom: 1px solid #eeeeee;"></div>
+
+                <div data-ng-show="visibility.question1" style="margin-top: 50px; margin-bottom: 70px;">
+                    <div class="survey_icon" style="float: left;"></div>
+                    <div style="margin-left: 120px;">
+                        <h4>1. Haben Sie schon einmal an (einem) Kongress(en) teilgenommen?</h4>
+                        <label class="radio inline">
+                            <input type="radio" data-ng-model="survey.data.question1"
+                                   data-ng-click="saveData('question1',survey.data.question1)" data-ng-value="true"> Ja
+                        </label>
+                        <label class="radio inline">
+                            <input type="radio" data-ng-model="survey.data.question1"
+                                   data-ng-click="saveData('question1',survey.data.question1)" data-ng-value="false"> Nein
+                        </label>
+                    </div>
+                </div>
+
+                <div data-ng-show="visibility.question2" style="margin-top: 50px; margin-bottom: 70px;">
+                    <div class="survey_icon" style="float: left;"></div>
+                    <div style="margin-left: 120px;">
+                        <h4>2. Haben Sie schon einmal einen oder mehrere Kongresse (mit-) organisiert?</h4>
+                        <label class="radio inline">
+                            <input type="radio" data-ng-model="survey.data.question2"
+                                   data-ng-click="saveData('question2',survey.data.question2)" data-ng-value="true"> Ja
+                        </label>
+                        <label class="radio inline">
+                            <input type="radio" data-ng-model="survey.data.question2"
+                                   data-ng-click="saveData('question2',survey.data.question2)" data-ng-value="false"> Nein
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <div data-ng-show="visibility.question3_1" style="margin-top: 50px; margin-bottom: 70px;">
+                        <div>
+                            <div class="survey_icon" style="float: left;"></div>
+                            <div style="margin-left: 120px;">
+                                <h4>3. Haben Sie für Ihren Kongress eine Managementsoftware für die Teilnehmer-/ Abstractverwaltung verwendet?</h4>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question3_1"
+                                           data-ng-click="saveData('question3_1',survey.data.question3_1)" data-ng-value="true"> Ja
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question3_1"
+                                           data-ng-click="saveData('question3_1',survey.data.question3_1)" data-ng-value="false"> Nein
+                                </label>
+                            </div>
+                        </div>
+
+                        <div data-ng-show="visibility.question3_1_1" style="margin-left: 100px;">
+                            <div style="margin-top: 50px;">
+                                <div class="survey_icon" style="float: left;"></div>
+                                <div style="margin-left: 120px;">
+                                    <h4>3.1 Welche Software haben Sie verwendet?</h4>
+                                    <div>
+                                        Freitext:
+                                    </div>
+                                    <label>
+                                        <textarea rows="4" cols="8" data-ng-model="survey.data.question3_1_1"  class="span9"
+                                                  data-ng-change="saveDataDeferred('question3_1_1', survey.data.question3_1_1)"
+                                                  placeholder="Freitext">
+                                        </textarea>
+                                    </label>
+                                    <button data-ng-disabled="survey.data.question3_1_1" class="btn btn-primary"
+                                            data-ng-click="survey.data.question3_1_1 = 'keine Angabe'; saveData('question3_1_1', 'keine Angabe')">
+                                        Weiter
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div data-ng-show="visibility.question3_2_1" style="margin-top: 50px;">
+                                <div class="survey_icon" style="float: left;"></div>
+                                <div style="margin-left: 120px;">
+                                    <h4>3.2 Was hat Ihnen an dieser Software besonders gut gefallen?</h4>
+                                    <div>
+                                        Freitext:
+                                    </div>
+                                    <label>
+                                        <textarea rows="4" cols="8" data-ng-model="survey.data.question3_2_1"  class="span9"
+                                                  data-ng-change="saveDataDeferred('question3_2_1', survey.data.question3_2_1)"
+                                                  placeholder="Freitext">
+                                        </textarea>
+                                    </label>
+                                    <button data-ng-disabled="survey.data.question3_2_1" class="btn btn-primary"
+                                            data-ng-click="survey.data.question3_2_1 = 'keine Angabe'; saveData('question3_2_1', 'keine Angabe')">
+                                        Weiter
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div data-ng-show="visibility.question3_3_1" style="margin-top: 50px; margin-bottom: 70px;">
+                                <div class="survey_icon" style="float: left;"></div>
+                                <div style="margin-left: 120px;">
+                                    <h4>3.3 Was hat Ihnen bei der Software gefehlt? Was könnte verbessert bzw. hinzugefügt/ korrigiert werden?</h4>
+                                    <div>
+                                        Freitext:
+                                    </div>
+                                    <label>
+                                        <textarea rows="4" cols="8" data-ng-model="survey.data.question3_3_1"  class="span9"
+                                                  data-ng-change="saveDataDeferred('question3_3_1', survey.data.question3_3_1)"
+                                                  placeholder="Freitext">
+                                        </textarea>
+                                    </label>
+                                    <button data-ng-disabled="survey.data.question3_3_1" class="btn btn-primary"
+                                            data-ng-click="survey.data.question3_3_1 = 'keine Angabe'; saveData('question3_3_1', 'keine Angabe')">
+                                        Weiter
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-ng-show="visibility.question4_1" style="margin-top: 50px; margin-bottom: 70px;">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h4>4. Wie lange ist die Vorlaufzeit (Planungsphase) für Ihre(n) Kongress(e)?</h4>
+                            <div style="height: 30px;">
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question4_1"
+                                           data-ng-click="saveData('question4_1',survey.data.question4_1)" data-ng-value="1"> < 6 Monate
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question4_1"
+                                           data-ng-click="saveData('question4_1',survey.data.question4_1)" data-ng-value="2"> 6-12 Monate
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question4_1"
+                                           data-ng-click="saveData('question4_1',survey.data.question4_1)" data-ng-value="3"> > 12 Monate
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question4_1"
+                                           data-ng-click="saveData('question4_1',survey.data.question4_1); focus('question4_1_addition')" data-ng-value="4">
+                                    <span data-ng-show="survey.data.question4_1 != 4">Andere Vorlaufzeit</span>
+                                </label>
+                                <input data-ng-show="survey.data.question4_1 == 4" style="vertical-align: -5px;" id="question4_1_addition"
+                                       data-ng-change="saveDataDeferred('question4_1_addition', survey.data.question4_1_addition)"
+                                       type="text" data-ng-model="survey.data.question4_1_addition" placeholder="Andere Vorlaufzeit"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-ng-show="visibility.question5_1" style="margin-top: 50px; margin-bottom: 70px;">
+                        <div>
+                            <div class="survey_icon" style="float: left;"></div>
+                            <div style="margin-left: 120px;">
+                                <h4>5. Haben Sie den Kongress aus eigenen Kräften mit Kollegen und Mitarbeitern organisiert oder haben Sie auf professionelle Hilfe zurückgegriffen?</h4>
+                                <div>
+                                    <label class="radio">
+                                        <input type="radio" data-ng-model="survey.data.question5_1"
+                                               data-ng-click="saveData('question5_1',survey.data.question5_1)" data-ng-value="1"> selbst organisiert
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" data-ng-model="survey.data.question5_1"
+                                               data-ng-click="saveData('question5_1',survey.data.question5_1)" data-ng-value="2"> teilweise selbst organisiert, aber auch Teile als Dienstleistung organisieren lassen
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" data-ng-model="survey.data.question5_1"
+                                               data-ng-click="saveData('question5_1',survey.data.question5_1)" data-ng-value="3"> alles als Dienstleistung organisieren lassen
+                                    </label>
+                                    <div style="height: 25px;">
+                                        <label class="radio inline">
+                                            <input type="radio" data-ng-model="survey.data.question5_1"
+                                                   data-ng-click="saveData('question5_1',survey.data.question5_1); focus('question5_1_addition')" data-ng-value="4">
+                                            <span data-ng-show="survey.data.question5_1 != 4">Freitext</span>
+                                        </label>
+                                        <input data-ng-show="survey.data.question5_1 == 4" style="vertical-align: -5px;" id="question5_1_addition"
+                                               data-ng-change="saveDataDeferred('question5_1_addition', survey.data.question5_1_addition)"
+                                               type="text" data-ng-model="survey.data.question5_1_addition" placeholder="Freitext"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div data-ng-show="visibility.question5_1_1" style="margin-left: 100px;">
+                            <div style="margin-top: 50px; margin-bottom: 70px;">
+                                <div class="survey_icon" style="float: left;"></div>
+                                <div style="margin-left: 120px;">
+                                    <h4>
+                                        5.1 Haben Sie schon einmal abgeschätzt, wie teuer die Organisation durch Sie selber
+                                        bzw. einen oder mehrere Ihrer Mitarbeiter ist? Sie bzw. Ihre Kollegen können
+                                        in dieser Zeit Ihren eigentlichen Aufgaben nicht nachkommen. Was schätzen Sie,
+                                        wie viel Gesamtkosten diese "Selbstorganisation" verursacht?
+                                    </h4>
+                                    <div style="height: 25px;">
+                                        <label class="radio inline">
+                                            <input type="radio" data-ng-model="survey.data.question5_1_1"
+                                                   data-ng-click="saveData('question5_1_1',survey.data.question5_1_1)" data-ng-value="1"> < 1.000 &euro;
+                                        </label>
+                                        <label class="radio inline">
+                                            <input type="radio" data-ng-model="survey.data.question5_1_1"
+                                                   data-ng-click="saveData('question5_1_1',survey.data.question5_1_1)" data-ng-value="2"> 1.000 - 5.000 &euro;
+                                        </label>
+                                        <label class="radio inline">
+                                            <input type="radio" data-ng-model="survey.data.question5_1_1"
+                                                   data-ng-click="saveData('question5_1_1',survey.data.question5_1_1)" data-ng-value="3"> > 5.000 &euro;
+                                        </label>
+                                        <label class="radio inline">
+                                            <input type="radio" data-ng-model="survey.data.question5_1_1"
+                                                   data-ng-click="saveData('question5_1_1',survey.data.question5_1_1); focus('question5_1_1_addition')" data-ng-value="4">
+                                            <span data-ng-show="survey.data.question5_1_1 != 4">Anderer Preis</span>
+                                        </label>
+                                        <input data-ng-show="survey.data.question5_1_1 == 4" style="vertical-align: -5px;" id="question5_1_1_addition"
+                                               data-ng-change="saveDataDeferred('question5_1_1_addition', survey.data.question5_1_1_addition)"
+                                               type="text" data-ng-model="survey.data.question5_1_1_addition" placeholder="Anderer Preis"/>
+                                    </div>
+                                    <div style="margin-top: 10px;">
+                                        (Auf unserer Website finden Sie ein Kalkulationstool, um die Kosten grob abschätzen
+                                        zu können -> <a href="http://www.vcongress.de/kongressrechner.php" target="_blank">www.vcongress.de/kongressrechner</a>)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 50px; margin-bottom: 70px;">
+                        <div data-ng-show="visibility.question6_1">
+                            <div class="survey_icon" style="float: left;"></div>
+                            <div style="margin-left: 120px;">
+                                <h4>6. Haben Sie an Ihrer Einrichtung eine zentrale Stelle für die Kongressorganisation (z.B. eine Abteilung für Kongress- oder Veranstaltungsmanagement)?</h4>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question6_1"
+                                           data-ng-click="saveData('question6_1',survey.data.question6_1)" data-ng-value="1"> Ja
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question6_1"
+                                           data-ng-click="saveData('question6_1',survey.data.question6_1)" data-ng-value="2"> Nein
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question6_1"
+                                           data-ng-click="saveData('question6_1',survey.data.question6_1)" data-ng-value="3"> Weiß ich nicht
+                                </label>
+                            </div>
+                        </div>
+
+                        <div data-ng-show="visibility.question6_1_1" style="margin-left: 100px;">
+                            <div style="margin-top: 50px; margin-bottom: 70px;">
+                                <div class="survey_icon" style="float: left;"></div>
+                                <div style="margin-left: 120px;">
+                                    <h4>6.1 Handelt es sich bei dieser Einrichtung eher um eine kleine Einheit oder um eine "Full Service Unit"?</h4>
+                                    <div>
+                                        <label class="radio">
+                                            <input type="radio" data-ng-model="survey.data.question6_1_1"
+                                                   data-ng-click="saveData('question6_1_1',survey.data.question6_1_1)" data-ng-value="1"> Ein-Mann/Frau-Betrieb
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" data-ng-model="survey.data.question6_1_1"
+                                                   data-ng-click="saveData('question6_1_1',survey.data.question6_1_1)" data-ng-value="2"> mehrere Mitarbeiter aber eingeschränktes Leistungsangebot
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" data-ng-model="survey.data.question6_1_1"
+                                                   data-ng-click="saveData('question6_1_1',survey.data.question6_1_1)" data-ng-value="3"> Full-Service-Einheit
+                                        </label>
+                                        <div style="height: 25px;">
+                                            <label class="radio inline">
+                                                <input type="radio" data-ng-model="survey.data.question6_1_1"
+                                                       data-ng-click="saveData('question6_1_1',survey.data.question6_1_1); focus('question6_1_1_addition')" data-ng-value="4">
+                                                <span data-ng-show="survey.data.question6_1_1 != 4">Freitext</span>
+                                            </label>
+                                            <input data-ng-show="survey.data.question6_1_1 == 4"
+                                                   data-ng-change="saveDataDeferred('question6_1_1_addition',survey.data.question6_1_1_addition)" style="vertical-align: -5px;" id="question6_1_1_addition"
+                                                   type="text" data-ng-model="survey.data.question6_1_1_addition" placeholder="Freitext"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div data-ng-show="visibility.question6_2_1" style="margin-top: 50px; margin-bottom: 70px;">
+                                <div class="survey_icon" style="float: left;"></div>
+                                <div style="margin-left: 120px;">
+                                    <h4>6.2 Kann Ihnen diese Einrichtung eine Managementsoftware für die Teilnehmer-/ Abstractverwaltung zur Verfügung stellen?</h4>
+                                    <label class="radio inline">
+                                        <input type="radio" data-ng-model="survey.data.question6_2_1"
+                                               data-ng-click="saveData('question6_2_1',survey.data.question6_2_1)" data-ng-value="1"> Ja
+                                    </label>
+                                    <label class="radio inline">
+                                        <input type="radio" data-ng-model="survey.data.question6_2_1"
+                                               data-ng-click="saveData('question6_2_1',survey.data.question6_2_1)" data-ng-value="2"> Nein
+                                    </label>
+                                    <label class="radio inline">
+                                        <input type="radio" data-ng-model="survey.data.question6_2_1"
+                                               data-ng-click="saveData('question6_2_1',survey.data.question6_2_1)" data-ng-value="3"> Weiß ich nicht
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-ng-show="visibility.question7_1" style="margin-top: 50px; margin-bottom: 70px;">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h4>7. Was soll Ihnen durch eine Managementsoftware abgenommen werden?</h4>
+                            <div>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-ng-model="survey.data.question7_1_a"
+                                           data-ng-click="saveData('question7_1_a',survey.data.question7_1_a)"> Teilnehmerregistrierung
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-ng-model="survey.data.question7_1_b"
+                                           data-ng-click="saveData('question7_1_b',survey.data.question7_1_b)"> Bezahlung und Rechnung
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-ng-model="survey.data.question7_1_c"
+                                           data-ng-click="saveData('question7_1_c',survey.data.question7_1_c)"> Abstracteinreichung
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-ng-model="survey.data.question7_1_d"
+                                           data-ng-click="saveData('question7_1_d',survey.data.question7_1_d)"> Reviewerprozess
+                                </label>
+                                <div style="height:30px;">
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" data-ng-model="survey.data.question7_1_e"
+                                               data-ng-click="saveData('question7_1_e',survey.data.question7_1_e); focus('question7_1_addition')">
+                                        <span data-ng-hide="survey.data.question7_1_e">Weiteres</span>
+                                    </label>
+                                    <input class="inline" data-ng-show="survey.data.question7_1_e == true" style="vertical-align: -5px;" id="question7_1_addition"
+                                           type="text" data-ng-model="survey.data.question7_1_addition"
+                                           data-ng-change="saveDataDeferred('question7_1_e',survey.data.question7_1_e)" placeholder="Weiteres"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-ng-show="visibility.question8_1" style="margin-top: 50px; margin-bottom: 70px;">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h4>8. Welche Abrechnungsmöglichkeit bevorzugen Sie?</h4>
+                            <div style="height: 25px;">
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question8_1"
+                                           data-ng-click="saveData('question8_1',survey.data.question8_1)" data-ng-value="1"> eine feste Pauschale
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question8_1"
+                                           data-ng-click="saveData('question8_1',survey.data.question8_1)" data-ng-value="2"> ein Preis pro Teilnehmer
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question8_1"
+                                           data-ng-click="saveData('question8_1',survey.data.question8_1)" data-ng-value="3"> beides ist in Ordnung
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question8_1"
+                                           data-ng-click="saveData('question8_1',survey.data.question8_1); focus('question8_1_addition')" data-ng-value="4">
+                                    <span data-ng-show="survey.data.question8_1 != 4">andere</span>
+                                </label>
+                                <input data-ng-show="survey.data.question8_1 == 4" style="vertical-align: -5px;" id="question8_1_addition"
+                                       type="text" data-ng-model="survey.data.question8_1_addition"
+                                       data-ng-change="saveDataDeferred('question8_1_addition',survey.data.question8_1_addition)" placeholder="andere"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-ng-show="visibility.question9_1" style="margin-top: 50px; margin-bottom: 70px;">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h4>9. Welchen Preis halten Sie für eine professionelle Teilnehmer-/Abstractverwaltung durch einen Dienstleister für angemessen?</h4>
+                            <span><strong>Pauschal</strong></span>
+                            <div style="height: 25px;">
+
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question9_1"
+                                           data-ng-click="saveData('question9_1',survey.data.question9_1)" data-ng-value="1"> < 5.000 &euro;
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question9_1"
+                                           data-ng-click="saveData('question9_1',survey.data.question9_1)" data-ng-value="2"> 5.000 - 10.000 &euro;
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question9_1"
+                                           data-ng-click="saveData('question9_1',survey.data.question9_1)" data-ng-value="3"> > 10.000 &euro;
+                                </label>
+                            </div>
+                            <span><strong>Pro Teilnehmer</strong></span>
+                            <div style="height: 25px;">
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question9_1"
+                                           data-ng-click="saveData('question9_1',survey.data.question9_1)" data-ng-value="4"> < 10 &euro;
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question9_1"
+                                           data-ng-click="saveData('question9_1',survey.data.question9_1)" data-ng-value="5"> 10 - 30 &euro;
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question9_1"
+                                           data-ng-click="saveData('question9_1',survey.data.question9_1)" data-ng-value="6"> > 30 &euro;
+                                </label>
+                            </div>
+                            <span><strong>Alternativ</strong></span>
+                            <div style="height: 25px;">
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question9_1"
+                                           data-ng-click="saveData('question9_1',survey.data.question9_1); focus('question9_1_addition')" data-ng-value="7">
+                                    <span data-ng-show="survey.data.question9_1 != 7">andere</span>
+                                </label>
+                                <input data-ng-show="survey.data.question9_1 == 7" style="vertical-align: -5px;" id="question9_1_addition"
+                                       data-ng-change="saveDataDeferred('question9_1_addition',survey.data.question9_1_addition)"
+                                       type="text" data-ng-model="survey.data.question9_1_addition" placeholder="andere"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-ng-show="visibility.question10_1" style="margin-top: 50px; margin-bottom: 70px;">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h4>10. Bei kostenlosen oder subventionierten Angeboten, würden Sie Fremdwerbung als Kreuzfinanzierung auf der Webseite oder dem Kongress zulassen? </h4>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.question10_1"
+                                       data-ng-click="saveData('question10_1',survey.data.question10_1)" data-ng-value="true"> Ja
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" data-ng-model="survey.data.question10_1"
+                                       data-ng-click="saveData('question10_1',survey.data.question10_1)" data-ng-value="false"> Nein
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div style="margin-top: 50px; margin-bottom: 70px;">
+                        <div data-ng-show="visibility.question3_2">
+                            <div class="survey_icon" style="float: left;"></div>
+                            <div style="margin-left: 120px;">
+                                <h4>3. Wurde bei den Kongressen, an denen Sie teilgenommen haben eine Software für die Teilnehmer-/ Abstractverwaltung verwendet?</h4>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question3_2"
+                                           data-ng-click="saveData('question3_2',survey.data.question3_2)" data-ng-value="1"> Ja
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question3_2"
+                                           data-ng-click="saveData('question3_2',survey.data.question3_2)" data-ng-value="2"> Nein
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question3_2"
+                                           data-ng-click="saveData('question3_2',survey.data.question3_2)" data-ng-value="3"> Weiß ich nicht
+                                </label>
+                            </div>
+                        </div>
+
+                        <div data-ng-show="visibility.question3_1_2" style="margin-left: 100px;">
+                            <div style="margin-top: 50px; margin-bottom: 70px;">
+                                <div class="survey_icon" style="float: left;"></div>
+                                <div style="margin-left: 120px;">
+                                    <h4>3.1 Was hat Ihnen bei dieser Software besonders gut gefallen, was hat Ihnen nicht gefallen bzw. gefehlt?</h4>
+                                    <div>
+                                        Freitext:
+                                    </div>
+                                    <label>
+                                        <textarea rows="4" cols="8" data-ng-model="survey.data.question3_1_2"  class="span9"
+                                                  data-ng-change="saveDataDeferred('question3_1_2', survey.data.question3_1_2)"
+                                                  placeholder="Freitext">
+                                        </textarea>
+                                    </label>
+                                    <button data-ng-disabled="survey.data.question3_1_2" class="btn btn-primary"
+                                            data-ng-click="survey.data.question3_1_2 = 'keine Angabe'; saveData('question3_1_2', 'keine Angabe')">
+                                        Weiter
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-ng-show="visibility.question4_2" style="margin-top: 50px; margin-bottom: 70px;">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h4>4. Was ist Ihnen generell an einem Kongress wichtig?</h4>
+                            <div>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-ng-model="survey.data.question4_2_a"
+                                           data-ng-click="saveData('question4_2_a',survey.data.question4_2_a)"> Austausch mit Kollegen
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-ng-model="survey.data.question4_2_b"
+                                           data-ng-click="saveData('question4_2_b',survey.data.question4_2_b)"> Poster und Vorträge
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-ng-model="survey.data.question4_2_c"
+                                           data-ng-click="saveData('question4_2_c',survey.data.question4_2_c)"> Catering
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-ng-model="survey.data.question4_2_d"
+                                           data-ng-click="saveData('question4_2_d',survey.data.question4_2_d)"> Location
+                                </label>
+                                <div style="height:30px;">
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" data-ng-model="survey.data.question4_2_e"
+                                               data-ng-click="saveData('question4_2_e',survey.data.question4_2_e); focus('question4_2_addition')">
+                                        <span data-ng-hide="survey.data.question4_2_e">Weiteres</span>
+                                    </label>
+                                    <input class="inline" data-ng-show="survey.data.question4_2_e == true" style="vertical-align: -5px;" id="question4_2_addition"
+                                           type="text" data-ng-model="survey.data.question4_2_addition" placeholder="Weiteres"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-ng-show="visibility.question5_2" style="margin-top: 50px; margin-bottom: 70px;">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h4>5.Wenn Sie einen Kongress organisieren müssten, wo würden Sie nach Informationen suchen?</h4>
+                            <div>
+                                <div style="height: 30px;">
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" data-ng-model="survey.data.question5_2_a"
+                                               data-ng-click="saveData('question5_2_a',survey.data.question5_2_a)"> Kollegen
+                                    </label>
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" data-ng-model="survey.data.question5_2_b"
+                                               data-ng-click="saveData('question5_2_b',survey.data.question5_2_b)"> Bibliothek
+                                    </label>
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" data-ng-model="survey.data.question5_2_c"
+                                               data-ng-click="saveData('question5_2_c',survey.data.question5_2_c)"> Internet
+                                    </label>
+                                </div>
+                                <div data-ng-show="survey.data.question5_2_c" style="height: 30px;">
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" data-ng-model="survey.data.question5_2_c_a"
+                                               data-ng-click="saveData('question5_2_c_a',survey.data.question5_2_c_a)"> Google
+                                    </label>
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" data-ng-model="survey.data.question5_2_c_b"
+                                               data-ng-click="saveData('question5_2_c_b',survey.data.question5_2_c_b)"> Bing
+                                    </label>
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" data-ng-model="survey.data.question5_2_c_c"
+                                               data-ng-click="saveData('question5_2_c_c',survey.data.question5_2_c_c)"> Ask
+                                    </label>
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" data-ng-model="survey.data.question5_2_c_d"
+                                               data-ng-click="saveData('question5_2_c_d',survey.data.question5_2_c_d)"> Blogs
+                                    </label>
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" data-ng-model="survey.data.question5_2_c_e"
+                                               data-ng-click="saveData('question5_2_c_e',survey.data.question5_2_c_e)"> Chats
+                                    </label>
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" data-ng-model="survey.data.question5_2_c_f"
+                                               data-ng-click="saveData('question5_2_c_f',survey.data.question5_2_c_f)"> Verzeichnisse
+                                    </label>
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" data-ng-model="survey.data.question5_2_c_g"
+                                               data-ng-click="saveData('question5_2_c_a',survey.data.question5_2_c_a); focus('question5_2_c_addition')">
+                                        <span data-ng-hide="survey.data.question5_2_c_g">andere</span>
+                                    </label>
+                                    <input data-ng-show="survey.data.question5_2_c_g == true" style="vertical-align: -5px;" id="question5_2_c_addition"
+                                           data-ng-change="saveDataDeferred('question5_2_c_addition',survey.data.question5_2_c_addition)"
+                                           type="text" data-ng-model="survey.data.question5_2_c_addition" placeholder="andere"/>
+                                </div>
+                                <div style="height:30px;">
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" data-ng-model="survey.data.question5_2_d"
+                                               data-ng-click="saveData('question5_2_d',survey.data.question5_2_d); focus('question5_2_addition')">
+                                        <span data-ng-hide="survey.data.question5_2_d">Weiteres</span>
+                                    </label>
+                                    <input class="inline" data-ng-show="survey.data.question5_2_d == true" style="vertical-align: -5px;" id="question5_2_addition"
+                                           data-ng-change="saveDataDeferred('question5_2_addition',survey.data.question5_2_addition)"
+                                           type="text" data-ng-model="survey.data.question5_2_addition" placeholder="Weiteres"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-ng-show="visibility.question6_2" style="margin-top: 50px; margin-bottom: 70px;">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h4>6. Welche Schlagwörter würden Sie für Ihre Suche benutzen?</h4>
+                            <div>
+                                Schlagwörter:
+                            </div>
+                            <label>
+                                <textarea rows="4" cols="8" data-ng-model="survey.data.question6_2"  class="span9"
+                                          data-ng-change="saveDataDeferred('question6_2',survey.data.question6_2)"
+                                          placeholder="Schlagwörter">
+                                </textarea>
+                            </label>
+                            <button data-ng-disabled="survey.data.question6_2" class="btn btn-primary"
+                                    data-ng-click="survey.data.question6_2 = 'keine Angabe'; saveData('question6_2', 'keine Angabe')">
+                                Weiter
+                            </button>
+                        </div>
+                    </div>
+
+                    <div data-ng-show="visibility.question7_2" style="margin-top: 50px; margin-bottom: 70px;">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h4>7. Welche Unterstützung würden Sie sich für die Organisation eines Kongresses wünschen?</h4>
+                            <div>
+                                <span><strong>Hilfe bei:</strong></span>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-ng-model="survey.data.question7_2_a"
+                                           data-ng-click="saveData('question7_2_a',survey.data.question7_2_a)" data-ng-value="1"> Räumlichkeiten
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-ng-model="survey.data.question7_2_b"
+                                           data-ng-click="saveData('question7_2_b',survey.data.question7_2_b)" data-ng-value="2"> Teilnehmermanagement
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-ng-model="survey.data.question7_2_c"
+                                           data-ng-click="saveData('question7_2_c',survey.data.question7_2_c)" data-ng-value="3"> Catering
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-ng-model="survey.data.question7_2_d"
+                                           data-ng-click="saveData('question7_2_d',survey.data.question7_2_d)" data-ng-value="4"> Technik
+                                </label>
+                                <div style="height: 25px;">
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" data-ng-model="survey.data.question7_2_e"
+                                               data-ng-click="saveData('question7_2_e',survey.data.question7_2_e); focus('question7_2_addition')">
+                                        <span data-ng-hide="survey.data.question7_2_e">Weiteres</span>
+                                    </label>
+                                    <input class="inline" data-ng-show="survey.data.question7_2_e == true" style="vertical-align: -5px;" id="question7_2_addition"
+                                           data-ng-change="saveDataDeferred('question7_2_addition',survey.data.question7_2_addition)"
+                                           type="text" data-ng-model="survey.data.question7_2_addition" placeholder="Weiteres"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-ng-show="visibility.question8_2" style="margin-top: 50px; margin-bottom: 70px;">
+                        <div>
+                            <div class="survey_icon" style="float: left;"></div>
+                            <div style="margin-left: 120px;">
+                                <h4>8. Haben Sie an Ihrer Einrichtung eine zentrale Stelle für die Kongressorganisation (z.B. eine Abteilung für Kongress- oder Veranstaltungsmanagement)?</h4>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question8_2"
+                                           data-ng-click="saveData('question8_2',survey.data.question8_2)" data-ng-value="1"> Ja
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question8_2"
+                                           data-ng-click="saveData('question8_2',survey.data.question8_2)" data-ng-value="2"> Nein
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" data-ng-model="survey.data.question8_2"
+                                           data-ng-click="saveData('question8_2',survey.data.question8_2)" data-ng-value="3"> Weiß ich nicht
+                                </label>
+                            </div>
+                        </div>
+
+                        <div style="margin-left: 100px;">
+                            <div data-ng-show="visibility.question8_1_2" style="margin-top: 50px; margin-bottom: 70px;">
+                                <div class="survey_icon" style="float: left;"></div>
+                                <div style="margin-left: 120px;">
+                                    <h4>8.1 Handelt es sich bei dieser Einrichtung eher um eine kleine Einheit oder um eine "Full Service Unit"?</h4>
+                                    <div>
+                                        <label class="radio">
+                                            <input type="radio" data-ng-model="survey.data.question8_1_2"
+                                                   data-ng-click="saveData('question8_1_2',survey.data.question8_1_2)" data-ng-value="1"> Ein-Mann/Frau-Betrieb
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" data-ng-model="survey.data.question8_1_2"
+                                                   data-ng-click="saveData('question8_1_2',survey.data.question8_1_2)" data-ng-value="2"> mehrere Mitarbeiter aber eingeschränktes Leistungsangebot
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" data-ng-model="survey.data.question8_1_2"
+                                                   data-ng-click="saveData('question8_1_2',survey.data.question8_1_2)" data-ng-value="3"> Full-Service-Einheit
+                                        </label>
+                                        <div style="height: 25px;">
+                                            <label class="radio inline">
+                                                <input type="radio" data-ng-model="survey.data.question8_1_2"
+                                                       data-ng-click="saveData('question8_1_2',survey.data.question8_1_2); focus('question8_1_2_addition')" data-ng-value="4">
+                                                <span data-ng-show="survey.data.question8_1_2 != 4">Anderes</span>
+                                            </label>
+                                            <input data-ng-show="survey.data.question8_1_2 == 4" style="vertical-align: -5px;" id="question8_1_2_addition"
+                                                   data-ng-change="saveDataDeferred('question8_1_2_addition',survey.data.question8_1_2_addition)"
+                                                   type="text" data-ng-model="survey.data.question8_1_2_addition" placeholder="Anderes"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div data-ng-show="visibility.question8_2_2" style="margin-top: 50px; margin-bottom: 70px;">
+                                <div class="survey_icon" style="float: left;"></div>
+                                <div style="margin-left: 120px;">
+                                    <h4>8.2 Könnte Ihnen diese Einrichtung eine Managementsoftware für die Teilnehmer-/ Abstractverwaltung zur Verfügung stellen?</h4>
+                                    <label class="radio inline">
+                                        <input type="radio" data-ng-model="survey.data.question8_2_2"
+                                               data-ng-click="saveData('question8_2_2',survey.data.question8_2_2)" data-ng-value="1"> Ja
+                                    </label>
+                                    <label class="radio inline">
+                                        <input type="radio" data-ng-model="survey.data.question8_2_2"
+                                               data-ng-click="saveData('question8_2_2',survey.data.question8_2_2)" data-ng-value="2"> Nein
+                                    </label>
+                                    <label class="radio inline">
+                                        <input type="radio" data-ng-model="survey.data.question8_2_2"
+                                               data-ng-click="saveData('question8_2_2',survey.data.question8_2_2)" data-ng-value="3"> Weiß ich nicht
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-ng-show="visibility.question9_2" style="margin-top: 50px; margin-bottom: 70px;">
+                        <div class="survey_icon" style="float: left;"></div>
+                        <div style="margin-left: 120px;">
+                            <h4>9. Was soll Ihnen durch eine Managementsoftware abgenommen werden?</h4>
+                            <div>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-ng-model="survey.data.question9_2_a"
+                                           data-ng-click="saveData('question9_2_a',survey.data.question9_2_a)"> Teilnehmerregistrierung
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-ng-model="survey.data.question9_2_b"
+                                           data-ng-click="saveData('question9_2_b',survey.data.question9_2_b)"> Bezahlung und Rechnung
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-ng-model="survey.data.question9_2_c"
+                                           data-ng-click="saveData('question9_2_c',survey.data.question9_2_c)"> Abstracteinreichung
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" data-ng-model="survey.data.question9_2_d"
+                                           data-ng-click="saveData('question9_2_d',survey.data.question9_2_d)"> Reviewerprozess
+                                </label>
+                                <div style="height:30px;">
+                                    <label class="checkbox inline">
+                                        <input type="checkbox" data-ng-model="survey.data.question9_2_e"
+                                               data-ng-click="saveData('question9_2_d',survey.data.question9_2_d); focus('question9_2_addition')">
+                                        <span data-ng-hide="survey.data.question9_2_e">Weiteres</span>
+                                    </label>
+                                    <input class="inline" data-ng-show="survey.data.question9_2_e == true" style="vertical-align: -5px;" id="question9_2_addition"
+                                           data-ng-change="saveDataDeferred('question9_2_addition',survey.data.question9_2_addition)"
+                                           type="text" data-ng-model="survey.data.question9_2_addition" placeholder="Weiteres"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-ng-show="visibility.questionA" class="span12 well">
+                <div style="margin-bottom: 12px; overflow: auto">
+                    <div class="scisertec-logo-medium" style="float: left"></div>
+                    <div style="float: right; padding: 20px;">
+                        <h2 style="">Zusatz</h2>
+                    </div>
+                </div>
+                <div style="margin: 20px 0 10px; border-bottom: 1px solid #eeeeee;"></div>
+                <div data-ng-show="visibility.questionA" style="margin-top: 50px; margin-bottom: 70px;">
+                    <div class="survey_icon" style="float: left;"></div>
+                    <div style="margin-left: 120px;">
+                        <h4>A. Gibt es Punkte, die bei der Umfrage offen geblieben sind? Vermissen Sie Fragen? Möchten Sie noch etwas ergänzen, was für die Entwicklung einer Software wichtig sein könnte?</h4>
+                        <div>
+                            Freitext:
+                        </div>
+                        <label>
+                            <textarea rows="4" cols="8" data-ng-model="survey.data.questionA"  class="span9"
+                                      data-ng-change="saveDataDeferred('questionA',survey.data.questionA)"
+                                      placeholder="Freitext">
+                            </textarea>
+                        </label>
+                        <button data-ng-disabled="survey.data.questionA" class="btn btn-primary"
+                                data-ng-click="survey.data.questionA = 'keine Angabe'; saveData('questionA', 'keine Angabe')">
+                            Weiter
+                        </button>
+                    </div>
+                </div>
+
+                <div data-ng-show="visibility.questionB" style="margin-top: 50px; margin-bottom: 70px;">
+                    <div class="survey_icon" style="float: left;"></div>
+                    <div style="margin-left: 120px;">
+                        <h4>B. Haben Sie, neben der Zusendung der Ergebnisse per E-Mail, Interesse an einer Veranstaltung teilzunehmen, bei der die Ergebnisse vorgestellt und diskutiert werden können?</h4>
+                        <label class="radio inline">
+                            <input type="radio" data-ng-model="survey.data.questionB"
+                                   data-ng-click="saveData('questionB',survey.data.questionB)" data-ng-value="true"> Ja
+                        </label>
+                        <label class="radio inline">
+                            <input type="radio" data-ng-model="survey.data.questionB"
+                                   data-ng-click="saveData('questionB',survey.data.questionB)" data-ng-value="false"> Nein
+                        </label>
+                    </div>
+                </div>
+
+                <div data-ng-show="visibility.questionC" style="margin-top: 50px; margin-bottom: 70px;">
+                    <div class="survey_icon" style="float: left;"></div>
+                    <div style="margin-left: 120px;">
+                        <h4>C. Freiwillige persönliche Angaben</h4>
+                        <div>
+                            (Bitte geben Sie Ihre Kontaktdaten an, falls Sie an einer Zusendung der Ergebnisse der Umfrage interessiert sind.)
+                        </div>
+                        <hr/>
+                        <div>
+                            <div class="inline">
+                                <div class="inline">
+                                    Titel<br/>
+                                    <input type="text" data-ng-model="person.title"
+                                           data-ng-change="saveDataDeferred('title', person.title)" style="width: 80px;">
+                                </div>
+                                <div class="inline">
+                                    Vorname<br/>
+                                    <input type="text" data-ng-model="person.firstName"
+                                           data-ng-change="saveDataDeferred('firstName', person.firstName)" class="span2">
+                                </div>
+                                <div class="inline">
+                                    Nachname<br/>
+                                    <input type="text" data-ng-model="person.lastName"
+                                           data-ng-change="saveDataDeferred('lastName', person.lastName)" class="span2">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            Straße<br/>
+                            <input type="text" data-ng-model="person.street"
+                                   data-ng-change="saveDataDeferred('street', person.street)" class="span5">
+                        </div>
+                        <div>
+                            <div class="inline">
+                                <div class="inline">
+                                    PLZ<br/>
+                                    <input type="text" data-ng-model="person.zipCode"
+                                           data-ng-change="saveDataDeferred('zipCode', person.zipCode)" style="width: 80px;">
+                                </div>
+                                <div class="inline">
+                                    Stadt<br/>
+                                    <input type="text" data-ng-model="person.city"
+                                           data-ng-change="saveDataDeferred('city', person.city)" style="width: 268px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            Institut<br/>
+                            <input type="text" data-ng-model="person.institute"
+                                   data-ng-change="saveDataDeferred('institute', person.institute)" class="span5">
+                        </div>
+                        <div>
+                            Abteilung<br/>
+                            <input type="text" data-ng-model="person.department"
+                                   data-ng-change="saveDataDeferred('department', person.department)" class="span5">
+                        </div>
+                        <div>
+                            Position<br/>
+                            <input type="text" data-ng-model="person.position"
+                                   data-ng-change="saveDataDeferred('position', person.position)" class="span5">
+                        </div>
+                        <div>
+                            E-Mail<br/>
+                            <input type="email" data-ng-model="person.email"
+                                   data-ng-change="saveDataDeferred('email', person.email)" class="span5">
+                        </div>
+                        <div>
+                            <div class="inline">
+                                <div class="inline">
+                                    Telefon<br/>
+                                    <input type="text" data-ng-model="person.phone"
+                                           data-ng-change="saveDataDeferred('phone', person.phone)" style="width: 174px;">
+                                </div>
+                                <div class="inline">
+                                    Fax<br/>
+                                    <input type="text" data-ng-model="person.fax"
+                                           data-ng-change="saveDataDeferred('fax', person.fax)" style="width: 174px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px;" data-ng-show="visibility.submitButton">
+                        <div class="offset3 span6">
+                            <input type="submit" class="btn btn-large btn-primary btn-block"
+                                   value="Umfrage abschicken" data-ng-click="submitSurvey()">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

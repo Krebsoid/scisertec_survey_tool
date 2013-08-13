@@ -1,0 +1,20 @@
+div#loginError {
+    transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    overflow: hidden;
+    padding: 5px;
+}
+
+div#loginError.ui-show {
+    opacity: 0;
+    max-height: 0;
+    padding: 0 5px;
+}
+
+div.home-content {
+    position: fixed;
+    top: 20%;
+    left: 10%;
+}

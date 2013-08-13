@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<div data-ng-controller="SheetController">
+
+    <div class="row-fluid">
+        <div class="span6" style="width: 700px;" id="question1" data-pie-chart="{{data.question1.results}}" data-series-name="Frage 1"
+             data-chart-title="1. Haben Sie schon einmal an (einem) Kongress(en) teilgenommen?">
+        </div>
+        <div class="span6" style="width: 700px;" id="question2" data-pie-chart="{{data.question2.results}}" data-series-name="Frage 2"
+             data-chart-title="2. Haben Sie schon einmal einen oder mehrere Kongresse (mit-) organisiert?">
+        </div>
+    </div>
+
+    <hr/>
+
+    <ul class="nav nav-tabs" id="SurveyTab">
+        <li class="active"><a href="#alreadyOrganizer" data-toggle="tab"><h3>Bereits Kongresse organisiert</h3></a></li>
+        <li><a href="#notYetOrganizer" data-toggle="tab"><h3>Noch keine Kongresse organisiert</h3></a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="alreadyOrganizer" class="tab-pane active">
+            <div class="row-fluid">
+                <div class="span6" style="width: 700px;" id="question3_1" data-pie-chart="{{data.question3_1.results}}" data-series-name="Frage 3"
+                     data-chart-title="3. Haben Sie für Ihren Kongress eine Managementsoftware<br/> für die Teilnehmer-/ Abstractverwaltung verwendet?">
+                </div>
+                <div class="span6" style="width: 700px;" id="question4_1" data-pie-chart="{{data.question4_1.results}}" data-series-name="Frage 4"
+                     data-chart-title="4. Wie lange ist die Vorlaufzeit (Planungsphase) für Ihre(n) Kongress(e)?">
+                </div>
+            </div>
+            <hr/>
+            <div class="row-fluid">
+                <div class="span6" style="width: 700px;" id="question5_1" data-pie-chart="{{data.question5_1.results}}" data-series-name="Frage 5"
+                     data-chart-title="5. Haben Sie den Kongress aus eigenen Kräften mit Kollegen<br/> und Mitarbeitern organisiert oder haben Sie auf professionelle Hilfe zurückgegriffen?">
+                </div>
+                <div class="span6" style="width: 700px;" id="question5_1_1" data-pie-chart="{{data.question5_1_1.results}}" data-series-name="Frage 5.1"
+                     data-chart-title="5.1 Haben Sie schon einmal abgeschätzt, wie teuer die Organisation<br/> durch Sie selber bzw. einen oder mehrere Ihrer Mitarbeiter ist?">
+                </div>
+            </div>
+            <hr/>
+            <div class="row-fluid">
+                <div class="span6" style="width: 700px;" id="question6_1" data-pie-chart="{{data.question6_1.results}}" data-series-name="Frage 6"
+                     data-chart-title="6. Haben Sie an Ihrer Einrichtung eine zentrale Stelle für die Kongressorganisation?">
+                </div>
+                <div class="span6" style="width: 700px;" id="question6_1_1" data-pie-chart="{{data.question6_1_1.results}}" data-series-name="Frage 6.1"
+                     data-chart-title="6.1 Handelt es sich bei dieser Einrichtung eher um eine<br/> kleine Einheit oder um eine 'Full Service Unit'?">
+                </div>
+            </div>
+            <hr/>
+            <div class="row-fluid">
+                <div class="span6" style="width: 700px;" id="question6_2_1" data-pie-chart="{{data.question6_2_1.results}}" data-series-name="Frage 6.2"
+                     data-chart-title="6.2 Kann Ihnen diese Einrichtung eine Managementsoftware<br/> für die Teilnehmer-/ Abstractverwaltung zur Verfügung stellen?">
+                </div>
+                <div class="span6" style="width: 700px;" id="question7_1" data-column-chart data-y-axis-text="Votings" data-categories="Registrierung,Payment,Paper,Review"
+                     data-chart-title="7. Was soll Ihnen durch eine Managementsoftware abgenommen werden?">
+                    <div data-column-chart-series="{{data.question7_1.results}}" data-series-name="Frage 7"></div>
+                </div>
+            </div>
+            <hr/>
+            <div class="row-fluid">
+                <div class="span6" style="width: 700px;" id="question8_1" data-pie-chart="{{data.question8_1.results}}" data-series-name="Frage 8"
+                     data-chart-title="8. Welche Abrechnungsmöglichkeit bevorzugen Sie?">
+                </div>
+                <div class="span6" style="width: 700px;" id="question9_1" data-pie-chart="{{data.question9_1.results}}" data-series-name="Frage 9"
+                     data-chart-title="9. Welchen Preis halten Sie für eine professionelle <br/>Teilnehmer-/Abstractverwaltung durch einen Dienstleister für angemessen?">
+                </div>
+            </div>
+            <hr/>
+            <div class="row-fluid">
+                <div class="span6" style="width: 700px;" id="question10_1" data-pie-chart="{{data.question10_1.results}}" data-series-name="Frage 10"
+                     data-chart-title="10. Bei kostenlosen oder subventionierten Angeboten, würden Sie<br/> Fremdwerbung als Kreuzfinanzierung auf der Webseite oder dem Kongress zulassen?">
+                </div>
+            </div>
+        </div>
+        <div id="notYetOrganizer" class="tab-pane">
+            <div class="row-fluid">
+                <div class="span6" style="width: 700px;" id="question3_2" data-pie-chart="{{data.question3_2.results}}" data-series-name="Frage 3"
+                     data-chart-title="3. Wurde bei den Kongressen, an denen Sie teilgenommen haben<br/> eine Software für die Teilnehmer-/ Abstractverwaltung verwendet">
+                </div>
+                <div class="span6" style="width: 700px;" id="question4_2" data-column-chart data-y-axis-text="Votings" data-categories="Austausch mit Kollegen,Poster und Vorträge,Catering,Location"
+                     data-chart-title="4. Was ist Ihnen generell an einem Kongress wichtig?">
+                    <div data-column-chart-series="{{data.question4_2.results}}" data-series-name="Frage 4"></div>
+                </div>
+            </div>
+            <hr/>
+            <div class="row-fluid">
+                <div class="span6" style="width: 700px;" id="question5_2" data-column-chart data-y-axis-text="Votings" data-categories="Kollegen,Bibliothek,Internet,Weiteres"
+                     data-chart-title="5. Wenn Sie einen Kongress organisieren müssten,<br/>wo würden Sie nach Informationen suchen?">
+                    <div data-column-chart-series="{{data.question5_2.results}}" data-series-name="Frage 5a"></div>
+                </div>
+                <div class="span6" style="width: 700px;" id="question5_2_c" data-column-chart data-y-axis-text="Votings" data-categories="Google,Bing,Ask,Blogs,Chats,Verzeichnisse"
+                     data-chart-title="5 (Internet). Wenn Sie einen Kongress organisieren müssten,<br/>wo würden Sie nach Informationen suchen?">
+                    <div data-column-chart-series="{{data.question5_2_c.results}}" data-series-name="Frage 5b"></div>
+                </div>
+            </div>
+            <hr/>
+            <div class="row-fluid">
+                <div class="span6" style="width: 700px;" id="question7_2" data-column-chart data-y-axis-text="Votings" data-categories="Räumlichkeiten,Teilnehmermanagement,Catering,Technik"
+                     data-chart-title="7. Welche Unterstützung würden Sie sich für die Organisation eines Kongresses wünschen?">
+                    <div data-column-chart-series="{{data.question7_2.results}}" data-series-name="Frage 7"></div>
+                </div>
+                <div class="span6" style="width: 700px;" id="question8_2" data-pie-chart="{{data.question8_2.results}}" data-series-name="Frage 8"
+                     data-chart-title="8. Haben Sie an Ihrer Einrichtung eine zentrale Stelle für die<br/> Kongressorganisation (z.B. eine Abteilung für Kongress- oder Veranstaltungsmanagement)?">
+                </div>
+            </div>
+            <hr/>
+            <div class="row-fluid">
+                <div class="span6" style="width: 700px;" id="question8_1_2" data-pie-chart="{{data.question8_1_2.results}}" data-series-name="Frage 8.1"
+                     data-chart-title="8.1 Handelt es sich bei dieser Einrichtung eher um eine<br/> kleine Einheit oder um eine 'Full Service Unit'?">
+                </div>
+                <div class="span6" style="width: 700px;" id="question8_2_2" data-pie-chart="{{data.question8_2_2.results}}" data-series-name="Frage 8.2"
+                     data-chart-title="8.2 Könnte Ihnen diese Einrichtung eine Managementsoftware<br/> für die Teilnehmer-/ Abstractverwaltung zur Verfügung stellen?">
+                </div>
+            </div>
+            <hr/>
+            <div class="row-fluid">
+                <div class="span6" style="width: 700px;" id="question9_2" data-column-chart data-y-axis-text="Votings" data-categories="Registrierung,Payment,Paper,Review"
+                     data-chart-title="9. Was soll Ihnen durch eine Managementsoftware abgenommen werden?">
+                    <div data-column-chart-series="{{data.question9_2.results}}" data-series-name="Frage 9"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

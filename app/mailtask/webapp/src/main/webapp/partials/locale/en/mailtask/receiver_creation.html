@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<div data-ng-controller="MailReceiverCreationController">
+    <div>
+        <form class="form-horizontal" name="mailReceiverForm" action="">
+            <div class="control-group">
+                <label class="control-label" for="mailReceiverSalutation">Salutation</label>
+                <div class="controls">
+                    <input id="mailReceiverSalutation" name="salutation" required
+                           data-ng-model="mailReceiver.salutation" type="text">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="mailReceiverTitle">Title</label>
+                <div class="controls">
+                    <input id="mailReceiverTitle" name="title"
+                           data-ng-model="mailReceiver.title" type="text">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="mailReceiverFirstName">First Name</label>
+                <div class="controls">
+                    <input id="mailReceiverFirstName" name="firstName"
+                           data-ng-model="mailReceiver.firstName" type="text">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="mailReceiverLastName">Last Name</label>
+                <div class="controls">
+                    <input id="mailReceiverLastName" name="lastName" required
+                           data-ng-model="mailReceiver.lastName" type="text">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="mailReceiverEmailAddress">Email Address</label>
+                <div class="controls">
+                    <input id="mailReceiverEmailAddress" name="emailAddress" required
+                           data-ng-model="mailReceiver.emailAddress" type="email">
+                </div>
+            </div>
+
+            <div class="controls">
+                <button class="btn btn-small" data-ng-click="hide()">
+                    Cancel
+                </button>
+                <button class="btn btn-primary"
+                        ng-click="createMailReceiver(mailReceiver)">
+                    Create Receiver
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

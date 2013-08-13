@@ -1,0 +1,81 @@
+
+.loading {
+    background-image: url("../img/icons/loading_icon.gif");
+    width: 30px;
+    height: 30px;
+}
+
+.success {
+    background-image: url("../img/icons/success_icon.png");
+    width: 30px;
+    height: 30px;
+}
+
+.error {
+    background-image: url("../img/icons/error_icon.png");
+    width: 30px;
+    height: 30px;
+}
+
+.warn {
+    background-image: url("../img/icons/warn_icon.png");
+    width: 30px;
+    height: 28px;
+}
+
+.link {
+    background-image: url("../img/icons/link_icon.gif");
+    width: 36px;
+    height: 36px;
+    margin-right: 5px;
+}
+
+.pdf {
+    background-image: url("../img/icons/pdf_icon_small.gif");
+    width: 18px;
+    height: 18px;
+    margin-right: 4px;
+}
+
+.csv {
+    background-image: url("../img/icons/csv_icon.gif");
+    width: 15px;
+    height: 16px;
+}
+
+.marker {
+    background-image: url("../img/icons/marker.png");
+    width: 128px;
+    height: 128px;
+}
+
+.vcongress-logo-medium {
+    background-image: url("../img/banner/vcongress_logo_medium.png");
+    width: 425px;
+    height: 82px;
+}
+
+.scisertec-logo-medium {
+    background-image: url("../img/banner/scisertec_logo_medium.png");
+    width: 425px;
+    height: 92px;
+}
+
+.sciser-logo-small {
+    background-image: url("../img/banner/sciser_logo_small.png");
+    width: 63px;
+    height: 40px;
+}
+
+
+.malte_bruweleit {
+    background-image: url("../img/screenshots/Pic_Malte_Bruweleit.jpg");
+    width: 300px;
+    height: 300px;
+}
+
+.daniel_wicke {
+    background-image: url("../img/screenshots/Pic_Daniel_Wicke.jpg");
+    width: 300px;
+    height: 300px;
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<div class="container-fluid" style="min-width: 1500px;" data-ng-controller="MailTaskController">
+<div class="row-fluid">
+<div class="span2" style="min-width: 270px; ">
+    <div>
+        <button class="btn btn-primary btn-large" style="width: 245px; margin-bottom: 20px;"
+                data-ng-click="createMailTask()">
+            <i class="icon-envelope icon-white"></i> New MailTask
+        </button>
+        <div style="white-space: nowrap; overflow: auto; max-height: 700px;">
+            <div class="well" style="width: 200px; margin-bottom: 10px;" data-ng-cloak data-ng-repeat="mailTask in mailTasks" data-ng-class="activeMailTaskClass(mailTask);">
+                <button type="button" class="close" data-ng-click="deleteMailTask(mailTask)" data-dismiss="alert">×</button>
+                <div><abbr title={{mailTask.comment}}><strong>{{mailTask.comment}}</strong></abbr></div>
+                <div>
+                    <div class="inline">
+                        <div><a data-ng-click="activateMailTask(mailTask);" style="cursor: pointer">{{mailTask.creationDate | date:'medium'}}</a></div>
+                        <div>{{mailTask.mailJobNumber}} Recipients</div>
+                    </div>
+                    <div class="inline">
+                                <span data-ng-show="mailTask.status == 'NOT_STARTED_YET'">
+                                    <span class="warn inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                                </span>
+                                <span data-ng-show="mailTask.status == 'DONE'">
+                                    <span class="success inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                                </span>
+                                <span data-ng-show="mailTask.status == 'RUNNING'">
+                                    <span class="loading inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                                </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="span5" data-ng-hide="activeMailTask.id">
+    <h2>Click on a MailTask to the left to load the content</h2>
+</div>
+
+<div class="span5" style="max-width: 500px;" data-ng-show="activeMailTask.id">
+    <div class="content-box well">
+        <fieldset>
+            <legend>
+                MailTask
+                        <span style="float:right" data-ng-switch="activeMailTask.status">
+                            <span data-ng-switch-when="NOT_STARTED_YET">
+                                Not started yet
+                                <span class="warn inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                            </span>
+                            <span data-ng-switch-when="DONE">
+                                Done
+                                <span class="success inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                            </span>
+                            <span data-ng-switch-when="RUNNING">
+                                Running
+                                <span class="loading inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                            </span>
+                        </span>
+            </legend>
+            <form class="form-horizontal" name="mailTaskform" action="">
+                <div class="control-group">
+                    <label class="control-label" for="mailTaskTopic">Topic</label>
+                    <div class="controls">
+                        <input id="mailTaskTopic" name="topic" required
+                               data-ng-model="activeMailTask.topic" type="text" placeholder="Topic of the Mail Task">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="mailTaskComment">Comment</label>
+                    <div class="controls">
+                        <input id="mailTaskComment" name="comment"
+                               data-ng-model="activeMailTask.comment" type="text">
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-primary btn-large" data-ng-disabled="sendMailTaskButtonState"
+                            ng-click="sendMailTask()">
+                        <i class="icon-envelope icon-white"></i> Send
+                    </button>
+                    <button class="btn btn-info btn-large" data-ng-disabled="saveMailTaskButtonState"
+                            ng-click="saveMailTask()">
+                        <i class="icon-retweet icon-white"></i> Save
+                    </button>
+                </div>
+            </form>
+        </fieldset>
+    </div>
+
+    <div class="content-box well">
+        <fieldset>
+            <legend>
+                Mail Receiver
+                        <span style="float:right">
+                            <span data-ng-show="activeMailTask.mailJobs.length == 0 && !importReceiverRunning">
+                                No Receiver added
+                                <span class="warn inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                            </span>
+                            <span data-ng-show="activeMailTask.mailJobs.length > 0 && !importReceiverRunning">
+                                {{activeMailTask.mailJobs.length}} Receiver
+                                <span class="success inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                            </span>
+                            <span data-ng-show="importReceiverRunning">
+                                Import running
+                                <span class="loading inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                            </span>
+                        </span>
+            </legend>
+            <div>
+                <div class="inline">
+                    <form id="receiverImport" action="" method="POST" enctype="application/octet-stream" name="receiverImport" class="form-inline" style="margin-top: 10px;">
+                        <input type="file" style="width: 270px;" data-ng-model="import.importReceiver" name="importFile">
+                        <input type="submit" class="btn btn-info" value="Upload" data-ng-disabled="uploadMailReceiverButtonState">
+
+                    </form>
+                </div>
+                <div class="inline">
+                    <button ng-click="deleteAllMailReceiver()" data-ng-disabled="deleteMailReceiverButtonState"
+                            class="btn btn-danger"><i class="icon-ban-circle icon-white"></i> Clear All</button>
+                </div>
+            </div>
+            <div class="alert alert-error" data-ng-show="errors.importReceiver.length > 0">
+                <h4>Error!</h4>
+                <div data-ng-repeat="error in errors.importReceiver">{{error.value}}</div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="content-box well">
+        <fieldset>
+            <legend>
+                Mail Template
+                        <span style="float:right">
+                            <span data-ng-show="!activeMailTask.contentAvailable && !importTemplateRunning">
+                                No Template
+                                <span class="warn inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                            </span>
+                            <span data-ng-show="activeMailTask.contentAvailable && !importTemplateRunning">
+                                Template loaded
+                                <span class="success inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                            </span>
+                            <span data-ng-show="importTemplateRunning">
+                                Import running
+                                <span class="loading inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                            </span>
+                        </span>
+            </legend>
+            <form id="templateImport" action="" method="POST" enctype="application/octet-stream" name="templateImport" class="form-inline" style="margin-top: 10px;">
+                <div>
+                    <input type="file"  style="width: 270px;" data-ng-model="import.importTemplate" name="importTemplate">
+                    <input type="submit" class="btn btn-info" value="Upload" data-ng-disabled="uploadMailTemplateButtonState">
+                </div>
+                <div class="alert alert-error" style="margin-top: 15px;" data-ng-show="errors.importTemplate.length > 0">
+                    <h4>Error!</h4>
+                    <div data-ng-repeat="error in errors.importTemplate">{{error.value}}</div>
+                </div>
+            </form>
+            <div data-ng-show="activeMailTask.contentAvailable">
+                <form name="templateTest">
+                    <input type="email" name="receiver" required data-ng-model="test.receiver" placeholder="Mail Address of Test Receiver" style="margin-right: 48px; vertical-align: -2px;"/>
+                    <button class="btn btn-primary" data-ng-disabled="templateTest.receiver.$invalid"
+                            ng-click="testMailTask(test.receiver)">
+                        <i class="icon-envelope icon-white"></i> Test Send
+                    </button>
+                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#mailTaskPreview">
+                        <i class="icon-search icon-white"></i>
+                    </button>
+                </form>
+                <div id="mailTaskPreview" class="collapse">
+                    <div data-ng-cloak data-compile="mailTaskPreview" class="previewContainer">
+
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="span5" style="min-width: 600px;" data-ng-show="activeMailTask.id">
+    <div>
+        <div style="max-height: 400px;overflow: auto; overflow-x: hidden;">
+            <table class="table table-striped table-hover" data-ng-cloak>
+                <thead>
+                <tr style="height: 44px; border-bottom: 2px darkslategrey dashed;">
+                    <th style="width: 50px;">
+                        <button data-bs-popover="'partials/locale/de/mailtask/receiver_creation.html'"
+                                data-placement="bottom" data-title="Mail Receiver Creation"
+                                data-ng-show="activeMailTask.status == 'NOT_STARTED_YET'"
+                                class="btn btn-small btn-info"><i class="icon-plus icon-white"></i></button>
+                    </th>
+                    <th style="width: 65px;">#</th>
+                    <th>Email Address</th>
+                    <th>Title</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+                </thead>
+                <tbody data-ng-repeat="mailJob in activeMailTask.mailJobs">
+                <tr data-ng-class="mailJob.status">
+                    <td><button data-ng-click="deleteMailReceiver(mailJob.id);" data-ng-show="activeMailTask.status == 'NOT_STARTED_YET'"
+                                class="btn btn-small btn-danger"><i class="icon-trash icon-white"></i></button></td>
+                    <td>{{$index+1}}</td>
+                    <td>{{mailJob.emailAddress}}</td>
+                    <td>{{mailJob.title}}</td>
+                    <td>{{mailJob.firstName}}</td>
+                    <td>{{mailJob.lastName}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div data-ng-show="activeMailTask.mailJobs.length == 0" class="alert alert-info" style="margin-top: 45px;">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <h4>Info!</h4>
+            No receiver yet..
+        </div>
+        <div data-ng-show="activeMailTask.status == 'DONE' && activeMailTask.mailJobs.length != 0" class="alert alert-success" style="margin-top: 45px;">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <h4>Success!</h4>
+            All mails were sent successfully...
+        </div>
+
+    </div>
+</div>
+</div>
+</div>

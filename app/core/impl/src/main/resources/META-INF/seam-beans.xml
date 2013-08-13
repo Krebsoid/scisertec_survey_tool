@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://java.sun.com/xml/ns/javaee"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:s="urn:java:ee"
+       xmlns:lc="urn:java:org.jboss.seam.international.locale"
+       xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd">
+
+    <lc:LocaleConfiguration>
+        <lc:supportedLocaleKeys>
+            <s:value>en</s:value>
+            <s:value>de</s:value>
+        </lc:supportedLocaleKeys>
+    </lc:LocaleConfiguration>
+
+</beans>

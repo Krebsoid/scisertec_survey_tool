@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<div class="container-fluid" style="min-width: 1500px;" data-ng-controller="SurveyController">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="page-header">
+                <div data-locale-template="survey/{{selectedSurveyType}}/headline"></div>
+            </div>
+        </div>
+        <div class="span2" style="min-width: 270px; ">
+            <div>
+                <button class="btn btn-primary btn-large" style="width: 245px; margin-bottom: 20px;" data-ng-click="createSurvey()">
+                    <i class="icon-envelope icon-white"></i> New Survey
+                </button>
+                <div style="white-space: nowrap; overflow: auto; max-height: 300px;">
+                    <div class="well" style="width: 200px; margin-bottom: 10px;" data-ng-cloak data-ng-repeat="survey in surveys" data-ng-class="activeSurveyClass(survey);">
+                        <button type="button" class="close" data-ng-click="deleteSurvey(survey)" data-dismiss="alert">×</button>
+                        <div><abbr title={{survey.name}}><strong>{{survey.name}}</strong></abbr></div>
+                        <div>
+                            <div class="inline">
+                                <div><a data-ng-click="activateSurvey(survey);" style="cursor: pointer">{{survey.creationDate | date:'medium'}}</a></div>
+                                <div>
+                                    <div class="inline">
+                                        <a href="api/survey/{{selectedSurveyType}}/{{survey.id}}/data.csv" target="_blank"><div class="csv"></div></a>
+                                    </div>
+                                    <div class="inline">{{survey.filledSheetCount}} / {{survey.sheetCount}} completed</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="span5" style="max-width: 500px;" data-ng-show="activeSurvey.id">
+            <div class="content-box well">
+                <fieldset>
+                    <legend>
+                        Survey
+                        <span style="float:right">
+                            <span data-ng-show="activeSurvey.surveyType == 'PERSONAL'">
+                                <span data-ng-show="activeSurvey.mailTask.id">
+                                    {{activeSurvey.mailTask.mailJobNumber}} possible Participants
+                                    <span class="success inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                                </span>
+                                <span data-ng-show="!activeSurvey.mailTask.id">
+                                    No MailTask associated
+                                    <span class="warn inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                                </span>
+                            </span>
+                            <span style="font-size: small">
+                                <a data-ng-href="{{activeSurvey.link}}">{{activeSurvey.link}}</a>
+                            </span>
+                        </span>
+                    </legend>
+                    <form class="form-horizontal" name="surveyform" action="">
+                        <div data-ng-show="activeSurvey.surveyType == 'PERSONAL'" class="control-group">
+                            <label class="control-label" for="mailTaskSelection">MailTask</label>
+                            <div class="controls">
+                                <select id="mailTaskSelection" name="mailTask" data-ng-model="activeSurvey.mailTask" required
+                                        data-ng-disabled="activeSurvey.status != 'NOT_STARTED_YET'"
+                                        data-ng-options="mailTask.comment for mailTask in mailTasks"></select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="name">Name</label>
+                            <div class="controls">
+                                <div class="input-append date">
+                                    <input id="name" name="name" required style="width: 205px;"
+                                           data-ng-model="activeSurvey.name" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="expirationDate">Expiration Date</label>
+                            <div class="controls">
+                                <div class="input-append date">
+                                    <input id="expirationDate" name="expirationDate" required style="width: 180px;"
+                                           data-bs-datepicker data-date-format="dd/mm/yyyy"
+                                           data-ng-model="activeSurvey.expirationDate" type="text">
+                                    <span class="add-on" data-toggle="datepicker"><i class="icon-calendar"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="controls">
+                            <button class="btn btn-primary btn-large" data-ng-disabled="activeSurvey.status != 'NOT_STARTED_YET'"
+                                    ng-click="startSurvey()">
+                                <i class="icon-envelope icon-white"></i> Start
+                            </button>
+                            <button class="btn btn-info btn-large"
+                                    ng-click="saveSurvey()">
+                                <i class="icon-retweet icon-white"></i> Save
+                            </button>
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
+
+            <div class="content-box well">
+                <fieldset>
+                    <legend>
+                        Expiration
+                        <span style="float:right">
+                            <span data-ng-show="activeSurvey.timeRemaining <= 0 && activeSurvey.status == 'NOT_STARTED_YET'">
+                                Date is in the past.
+                                <span class="warn inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                            </span>
+                            <span data-ng-show="activeSurvey.timeRemaining > 0 && activeSurvey.status == 'NOT_STARTED_YET'">
+                                Not started yet.
+                                <span class="warn inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                            </span>
+                            <span data-ng-show="activeSurvey.status == 'RUNNING'">
+                                Survey started.
+                                <span class="loading inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                            </span>
+                            <span data-ng-show="activeSurvey.status == 'EXPIRED'">
+                                Survey done.
+                                <span class="success inline" style="margin-left: 5px; vertical-align: -5px;"></span>
+                            </span>
+                        </span>
+                    </legend>
+                    <div>
+                        <div class="alert alert-info" data-ng-show="activeSurvey.timeRemaining > 0">
+                            <h4>
+                                <div data-count-down="{{activeSurvey.timeRemaining}}"></div>
+                            </h4>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="span12" style="max-width: 1500px;" data-ng-show="activeSurvey.id && activeSurvey.status == 'RUNNING'">
+            <hr/>
+            <ul class="nav nav-tabs" id="SurveyTab">
+                <li class="active"><a href="#sheets" data-toggle="tab"><h3>Sheets</h3></a></li>
+                <li><a href="#statistics" data-toggle="tab"><h3>Statistics</h3></a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="sheets" class="tab-pane active">
+                    <div data-locale-template="survey/{{selectedSurveyType}}/sheet_table"></div>
+                </div>
+                <div id="statistics" class="tab-pane">
+                    <div data-locale-template="survey/{{selectedSurveyType}}/data"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

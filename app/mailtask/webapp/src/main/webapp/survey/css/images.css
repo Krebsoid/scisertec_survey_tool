@@ -1,0 +1,36 @@
+.tilman_fabian {
+    background-image: url(../img/fabian.png);
+    width: 145px;
+    height: 145px;
+}
+
+.survey_icon {
+    background-image: url(../img/icon_survey.png);
+    width: 98px;
+    height: 102px;
+}
+
+.person_icon {
+    background-image: url(../img/icon_person.png);
+    width: 100px;
+    height: 100px;
+}
+
+.complete_icon {
+    background-image: url(../img/icon_complete.png);
+    width: 65px;
+    height: 54px;
+}
+
+
+.flag_germany {
+    background-image: url(../img/flag_germany.png);
+    width: 100px;
+    height: 50px;
+}
+
+.flag_britain {
+    background-image: url(../img/flag_britain.png);
+    width: 100px;
+    height: 50px;
+}

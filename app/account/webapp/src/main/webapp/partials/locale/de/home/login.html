@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<div class="well">
+    <form name="user" class="form-horizontal" ng-controller="LoginController">
+        <div class="control-group">
+            <label class="control-label" for="username">Benutzername</label>
+            <div class="controls">
+                <input type="text" name="inputUsername" ng-model="user.username" id="username" placeholder="Username" required>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password">Passwort</label>
+            <div class="controls">
+                <input type="password" name="inputPassword" ng-model="user.password" id="password" placeholder="Password" required>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <label class="checkbox">
+                    <input type="checkbox"> Remember me
+                </label>
+                <button type="submit" ng-click="login(user)" class="btn btn-primary">Einloggen</button>
+            </div>
+        </div>
+        <div>
+            <div data-ng-show="error.loginFailed" class="alert alert-error" style="display: none">
+                <strong>Fehler!</strong> Benutzername oder Passwort falsch.
+            </div>
+            <div data-ng-show="error.connectionProblem" class="alert alert-error" style="display: none">
+                <strong>Fehler!</strong> Verbindungsproblem! Bitte überprüfen Sie Ihre Internetverbindung.
+            </div>
+        </div>
+    </form>
+</div>
+

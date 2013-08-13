@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+
+    <meta name="author" content="SciSerTec, Dr. Daniel Wicke, Malte Bruweleit"/>
+    <meta name="publisher" content="SciSerTec, Dr. Daniel Wicke, Malte Bruweleit"/>
+    <meta name="copyright" content="SciSerTec, Science Service and Technologies Malte Bruweleit"/>
+
+    <meta NAME="robots" CONTENT="index,follow">
+    <meta NAME="language" CONTENT="de">
+
+    <meta name="description" content="SciSerTec - Science, Service and Technologies - by Dr. Daniel Wicke and Malte Bruweleit is an IT and Software Provider from Hannover, Germany. The company is specialized on the medical and life science sector and provides individual web solutions for scientists.">
+    <meta name="keywords"
+          content="SciSerTec, Science, Service, Technologies, Malte Bruweleit, Dr. Daniel Wicke, vCongress, SciSerNet, dw-websites, Web Design, Software Engineering, Software Development">
+    <meta name="revisit-after" content="2 days">
+
+    <title>SciSerTec - Science, Service and Technologies - Dr. Daniel Wicke and Malte Bruweleit - IT and Software Provider from Hannover, Germany</title>
+
+    <script type="text/javascript" src="lib/fix/es5-shim.js"></script>
+    <script type="text/javascript" src="lib/fix/json2.js"></script>
+    <script type="text/javascript" src="lib/fix/modernizr/2.6.1/js/modernizr.js"></script>
+
+    <script type="text/javascript" src="lib/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="lib/angularjs/angular.js"></script>
+    <script type="text/javascript" src="lib/angularjs/angular-resource.js"></script>
+    <script type="text/javascript" src="lib/angularjs/angular-strap.js"></script>
+    <script type="text/javascript" src="lib/jquery/highchart/highcharts.min.js"></script>
+    <script type="text/javascript" src="lib/jquery/form/jquery.form.js"></script>
+    <script type="text/javascript" src="lib/jquery/cookie/jquery.cookie.js"></script>
+    <script type="text/javascript" src="lib/jquery/placeholder/jquery.placeholder.js"></script>
+
+    <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="lib/bootstrap/js/bootstrap-popover.js"></script>
+    <script type="text/javascript" src="lib/bootstrap/js/bootstrap-hover-dropdown.js"></script>
+    <script type="text/javascript" src="lib/bootstrap/js/bootstrap-datepicker.js"></script>
+
+    <script type="text/javascript" src="js/modules/survey/Chart.js"></script>
+    <script type="text/javascript" src="js/modules/survey/Survey.js"></script>
+    <script type="text/javascript" src="js/modules/mailtask/MailTask.js"></script>
+    <script type="text/javascript" src="js/modules/account/Login.js"></script>
+    <script type="text/javascript" src="js/modules/account/User.js"></script>
+    <script type="text/javascript" src="js/modules/locale/locale.js"></script>
+    <script type="text/javascript" src="js/modules/common/common.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <link href="lib/bootstrap/css/bootstrap-datepicker.css" rel="stylesheet"/>
+
+    <link href="css/mailtask.css" rel="stylesheet"/>
+    <link href="css/custom.css" rel="stylesheet"/>
+    <link href="css/images.css" rel="stylesheet"/>
+    <link href="css/home.css" rel="stylesheet"/>
+
+    <link rel ="shortcut icon" href="img/icons/scisertec.ico"/>
+
+    <script type="text/javascript">
+        angular.element(document).ready(function () {
+            return angular.bootstrap(document, ['main']);
+        });
+    </script>
+</head>
+
+<body>
+
+<noscript>
+    <div id="NoJavaScriptNotification" class="alert alert-error">
+        <h1>JavaScript is disabled in your Browser</h1>
+        <h4>Please restore the default settings in your Browser and reload this Page</h4>
+    </div>
+</noscript>
+
+<div>
+
+    <div data-restricted-logged-in data-locale-template="index/navbar"></div>
+
+    <div style="margin-bottom: 60px;">
+
+        <div class="container-fluid" style="padding: 10px">
+
+            <div data-ng-view></div>
+
+        </div>
+
+    </div>
+
+    <footer>
+
+        <div data-locale-template="index/footer"></div>
+
+    </footer>
+
+</div>
+
+<div data-locale-template="index/connection_alert"></div>
+
+</body>
+
+
+</html>
